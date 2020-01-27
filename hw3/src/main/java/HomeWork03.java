@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -17,6 +18,12 @@ public class HomeWork03 {
         int k = 6;
         System.out.println(k + " шестое по величине число: " + kOrderValue(nums, k));
 
+        String[] val = {"a", "b", "c", "d", "e", "f", "lol"};
+        String[] from = {"a", "b", "e", "c", "d"};
+        String[] to = {"x", "y", "z"};
+        System.out.println(Arrays.toString(translate(val, from, to)));
+        System.out.println(Arrays.toString(from));
+        System.out.println(Arrays.toString(to));
 
         System.out.println(isEmail("m.levin.main@mailg.spb.com"));
 
@@ -143,31 +150,47 @@ public class HomeWork03 {
      *  [a, b, c, d], [a, b, e, d], [x, y] -> [x, y, c] d удалем, так как он есть во
      *  from
      */
-    public String[] translate(String[] values, String[] from, String[] to) {
+    public static String[] translate(String[] values, String[] from, String[] to) {
         // TODO: 1/22/2020
-        for (int i = 0; i < values.length; i++) {
-            for (int j = 0; j < from.length; j++) {
-                if (to.length > from.length) {
-                    if (values[i].equals(from[j])) {
-                        from[j] = to[j];
-                    } else {
-                        values[i] = to[from.length];
-                    }
-                } else {
-                    if (to.length < j) {
-                        if (values[i].equals(from[j])) {
-                            values[i] = null;
-                        }
-                    } else {
-                        if (values[i].equals(from[j])) {
-                            from[j] = to[j];
-                        }
+//        if (to.length < from.length) {
+//            for (int i = to.length; i < from.length; i++) {
+//                for (int j = 0; j < values.length; j++) {
+//                    if (from[i] == values[j]) {
+//                        values[j] = "lol";
+//                    }
+//                }
+//            }
+
+        if (to.length < from.length) {
+            for (int i = to.length; i < from.length; i++) {
+                for (int j = 0; j < values.length; j++) {
+                    if (from[i] == values[j]) {
+                        values[j] = "lol";
                     }
                 }
             }
-
-
+        } else if (to.length > from.length) {
+            for (int i = 0; i < values.length; i++) {
+                boolean b = false;
+                for (int j = 0; j < from.length; j++) {
+                    if (values[i] == from[j]) {
+                        b = true;
+                    }
+                }
+                if (!b) {
+                    values[i] = to[from.length];
+                }
+            }
         }
-        return null;
+        int minLength = Math.min(to.length, from.length);
+        for (int i = 0; i < values.length; i++) {
+            for (int j = 0; j < minLength; j++) {
+                if (values[i] == from[j]) {
+                    values[i] = to[j];
+                }
+            }
+        }
+
+        return values;
     }
 }
