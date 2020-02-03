@@ -2,6 +2,12 @@ public class Dog extends Animal {
     public  int height;
     private static int totalDog;
 
+    public Dog(String type, String name, int weight, int runSpeed, int swimSpeed, int maxDistanceRun, int maxDistanceSwim, int height) {
+        super(type, name, weight, runSpeed, swimSpeed, maxDistanceRun, maxDistanceSwim);
+        this.height = height;
+        totalDog++;
+    }
+
     public Dog(String name, int weight, int height) {
         super(name, weight);
         this.height = height;
@@ -33,29 +39,16 @@ public class Dog extends Animal {
         System.out.println("Height: " + height);
     }
 
+    @Override
     public String run(int distance) {
-        String s = "Dog " + name + " пробежал " + distance;
-        if (distance < 500) {
-            if (runSpeed > 0) {
-                s += " за " + distance/runSpeed + " с.";
-            }
-        } else {
-            s = "Так далеко собаки не бегают!";
-        }
-        return s;
+        return super.run(distance);
     }
 
+    @Override
     public String swim(int distance) {
-        String s = "Dog " + name + "проплыл " + distance;
-        if (distance < 10) {
-            if (runSpeed > 0) {
-                s += " за " + distance/swimSpeed + " с.";
-            }
-        } else {
-            s = "Так далеко собаки не плавают!";
-        }
-        return s;
+        return super.swim(distance);
     }
+
     public int getTotalDog() {
         return totalDog;
     }
