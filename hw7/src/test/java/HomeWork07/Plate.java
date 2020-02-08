@@ -2,8 +2,9 @@ package HomeWork07;
 
 public class Plate extends Storage {
     private String type;
-    private int maxVolum;
-    private int volum;
+    private boolean eatOrNot;
+//    private int maxVolum;
+//    private int volum;
 
     public Plate(String type, int maxVolum) {
         super(type, maxVolum);
@@ -11,26 +12,39 @@ public class Plate extends Storage {
 
     @Override
     public int arrival(int add) {
-        if(volum + add > maxVolum) {
+        if(super.getVolume() + add > super.getMaxVolum()) {
             System.out.println("В тарелку столько не поместится!");
         } else {
-            volum += add;
+            super.setVolume(super.getVolume() + add);
         }
-        return volum;
+        return super.getVolume();
     }
 
     @Override
     public int consumption(int take) {
-        if (volum - take < 0) {
+        if (super.getVolume() - take < 0) {
             System.out.println("В тарелки недостаточно еды!");
         } else {
-            volum -= take;
+            super.setVolume(super.getVolume() - take);
+            eatOrNot = true;
         }
-        return volum;
+        return super.getVolume();
     }
 
     @Override
     public int balance() {
-        return 0;
+        return super.getVolume();
+    }
+
+    public int getMaxVolum() {
+        return super.getMaxVolum();
+    }
+
+    public boolean getEatOrNot() {
+        return eatOrNot;
+    }
+
+    public void setEatOrNot(boolean b) {
+        eatOrNot = b;
     }
 }

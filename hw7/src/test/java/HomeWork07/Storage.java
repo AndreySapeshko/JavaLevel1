@@ -12,6 +12,18 @@ public abstract class Storage {
         this.maxVolum = maxVolum;
     }
 
+    public int getMaxVolum() {
+        return maxVolum;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int i) {
+        volume = i;
+    }
+
     public abstract int arrival(int add);
 
     public abstract int consumption(int take);
