@@ -2,6 +2,7 @@ import org.graalvm.compiler.replacements.StandardGraphBuilderPlugins;
 import org.w3c.dom.ls.LSOutput;
 
 import java.sql.SQLOutput;
+import java.util.Scanner;
 
 public class HomeWork1 {
     public static void main(String[] args) {
